@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script>
+            window.addEventListener("load", () => {
+                document.querySelector("#id").addEventListener("input", (e) => {
+                    let id = document.querySelector("#id").value;
+                    const xhttp = new XMLHttpRequest();
+                    xhttp.open("GET", "livre_by_id.php?id=" + id);
+                    xhttp.onreadystatechange = () => {
+                        if (xhttp.readyState == 4 && xhttp.status == 200) {
+                            document.querySelector(".fiche-livre").innerHTML =
+                                xhttp.responseText;
+                        }
+                    };
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <h1>BIBLIO</h1>
+        <label for="id">Numéro du livre</label>
+        <input type="text" name="id" id="id" />
+        <hr />
+        <div class="fich-livre"></div>
+    </body>
+</html>
